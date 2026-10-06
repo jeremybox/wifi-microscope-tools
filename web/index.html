@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andonstar Control</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <div>
+        <p class="eyebrow">wifi microscope</p>
+        <h1>Andonstar</h1>
+      </div>
+      <div class="meta" id="meta">
+        <span class="pill" id="conn">connecting…</span>
+        <span class="dim" id="scope-ip"></span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="preview-pane">
+        <details class="block wifi-block" id="wifi-panel">
+          <summary class="wifi-summary">
+            <span>Wi‑Fi settings</span>
+            <span class="dim" id="wifi-summary-status">checking…</span>
+          </summary>
+          <label>Adapter
+            <select id="wifi-iface"></select>
+          </label>
+          <div class="row">
+            <button type="button" id="btn-wifi-scan">Scan</button>
+            <button type="button" id="btn-wifi-connect" class="primary">Connect</button>
+            <button type="button" id="btn-wifi-disconnect">Disconnect</button>
+            <button type="button" id="btn-wifi-route">Fix route</button>
+          </div>
+          <label>SSID
+            <select id="wifi-ssid"></select>
+          </label>
+          <label>Password
+            <input id="wifi-pass" type="text" value="12345678" autocomplete="off" />
+          </label>
+          <pre id="wifi-box">…</pre>
+        </details>
+
+        <div class="preview-frame">
+          <img id="preview" alt="Live preview" />
+          <div class="preview-overlay" id="preview-empty">Stream off</div>
+        </div>
+        <div class="preview-actions">
+          <button type="button" id="btn-stream-on" class="primary">Enable stream</button>
+          <button type="button" id="btn-stream-off">Disable stream</button>
+          <button type="button" id="btn-refresh">Refresh state</button>
+          <a class="linkish" id="obs-link" href="#" target="_blank" rel="noreferrer">Direct :8192</a>
+        </div>
+        <p class="note">
+          Live Wi‑Fi preview is firmware-capped (~640×380 video / ~640×480 photo).
+          Photo/video resolution settings apply to SD captures, not the MJPEG feed.
+        </p>
+      </section>
+
+      <aside class="controls">
+        <section class="block">
+          <h2>Mode</h2>
+          <div class="row" id="mode-buttons"></div>
+        </section>
+
+        <section class="block">
+          <h2>Capture</h2>
+          <div class="row">
+            <button type="button" id="btn-snap">Photo to SD</button>
+            <button type="button" id="btn-rec-on">Record on</button>
+            <button type="button" id="btn-rec-off">Record off</button>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2>Photo resolution <span class="hint">cmd 1002</span></h2>
+          <select id="photo-res"></select>
+        </section>
+
+        <section class="block">
+          <h2>Video resolution <span class="hint">cmd 2002</span></h2>
+          <select id="video-res"></select>
+        </section>
+
+        <section class="block">
+          <h2>Video resolution (alt) <span class="hint">cmd 2024</span></h2>
+          <select id="video-res-alt"></select>
+        </section>
+
+        <section class="block">
+          <h2>Image</h2>
+          <label>Exposure <span class="hint">2005</span>
+            <select id="exposure"></select>
+          </label>
+          <label>Brightness/contrast <span class="hint">2020</span>
+            <select id="brightness"></select>
+          </label>
+          <label>Flip / rotate <span class="hint">2023</span>
+            <select id="flip"></select>
+          </label>
+          <label>HDR <span class="hint">2004</span>
+            <select id="hdr">
+              <option value="0">Off</option>
+              <option value="1">On</option>
+            </select>
+          </label>
+          <label>Date watermark <span class="hint">2008</span>
+            <select id="watermark">
+              <option value="0">Off</option>
+              <option value="1">On</option>
+            </select>
+          </label>
+          <label>Loop record <span class="hint">2003</span>
+            <select id="loop"></select>
+          </label>
+        </section>
+
+        <section class="block">
+          <h2>Status</h2>
+          <pre id="status-box">…</pre>
+        </section>
+
+        <section class="block advanced">
+          <h2>Raw command</h2>
+          <div class="row">
+            <input id="raw-cmd" type="number" placeholder="cmd" />
+            <input id="raw-par" type="text" placeholder="par (optional)" />
+            <button type="button" id="btn-raw">Send</button>
+          </div>
+          <p class="note warn">Format / firmware / wifi-credential commands are blocked.</p>
+        </section>
+      </aside>
+    </main>
+  </div>
+  <div id="toast" hidden></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

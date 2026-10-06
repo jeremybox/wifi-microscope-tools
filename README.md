@@ -3,6 +3,8 @@
 Python client + local web UI for Andonstar scopes that expose the Novatek-style
 HTTP API (`/?custom=1&cmd=…`) and multipart MJPEG on TCP **8192**.
 
+![Web UI](docs/ui.png)
+
 ## Setup
 
 ```bash
